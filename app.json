@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "ACESATAI",
+    "slug": "acesatai-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0a0e1a"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.acesatai.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "ACESATAI needs camera access to photograph math problems for Snap & Solve.",
+        "NSMicrophoneUsageDescription": "ACESATAI needs microphone access for the Socratic Voice Coach feature."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0a0e1a"
+      },
+      "package": "com.acesatai.app",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "acesatai",
+    "plugins": [
+      "expo-camera",
+      "expo-router"
+    ]
+  }
+}
