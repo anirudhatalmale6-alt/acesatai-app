@@ -80,10 +80,17 @@ jobs:
 
       - name: Create IPA
         run: |
-          cd /tmp/ACESATAI.xcarchive/Products/Applications 2>/dev/null || true
-          mkdir -p Payload
-          cp -R *.app Payload/ 2>/dev/null || true
-          zip -r /tmp/ACESATAI.ipa Payload/ 2>/dev/null || true
+          mkdir -p /tmp/ipa-build/Payload
+          if [ -d "/tmp/ACESATAI.xcarchive/Products/Applications" ]; then
+            cp -R /tmp/ACESATAI.xcarchive/Products/Applications/*.app /tmp/ipa-build/Payload/
+          elif [ -d "/tmp/ACESATAI.xcarchive/Products/usr/local/bin" ]; then
+            find /tmp/ACESATAI.xcarchive -name "*.app" -exec cp -R {} /tmp/ipa-build/Payload/ \;
+          else
+            find /tmp/ACESATAI.xcarchive -name "*.app" -type d -exec cp -R {} /tmp/ipa-build/Payload/ \;
+          fi
+          cd /tmp/ipa-build
+          zip -r /tmp/ACESATAI.ipa Payload/
+          ls -la /tmp/ACESATAI.ipa
 
       - name: Upload IPA
         uses: softprops/action-gh-release@v2
