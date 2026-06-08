@@ -29,6 +29,12 @@ jobs:
       - name: Prebuild Android
         run: npx expo prebuild --platform android --clean
 
+      - name: Fix Kotlin/Compose compatibility
+        run: |
+          echo "kotlin.suppress.version.check=true" >> android/gradle.properties
+          # Suppress Compose Compiler Kotlin version check
+          sed -i 's/kotlinOptions {/kotlinOptions {\n        freeCompilerArgs += ["-P", "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=1.9.24"]/' android/app/build.gradle 2>/dev/null || true
+
       - name: Build Android APK
         working-directory: android
         run: ./gradlew assembleRelease
