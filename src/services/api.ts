@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as FileSystem from 'expo-file-system';
 
-const BASE_URL = 'http://104.131.169.30';
+const BASE_URL = 'https://api.acesatai.com';
 const API = `${BASE_URL}/api/v1`;
 
 const USER_ID = 'demo_user_1';
